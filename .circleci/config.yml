@@ -9,12 +9,12 @@ jobs:
       - run:
           name: build
           command: |
-            stack build
-            stack exec site rebuild
+            stack update
             git submodule init
             git submodule update
             cd _site/ && git checkout master
-            cabal run build
+            stack build
+            stack exec site rebuild
 
   deploy:
     machine:
