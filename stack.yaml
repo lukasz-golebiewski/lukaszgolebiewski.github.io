@@ -38,7 +38,32 @@ packages:
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
-# extra-deps: []
+extra-deps:
+- blaze-html-0.9.1.1
+- blaze-markup-0.8.2.2
+- cryptohash-0.11.9
+- data-default-0.7.1.1
+- file-embed-0.0.11
+- fsnotify-0.3.0.1
+- http-conduit-2.3.2
+- http-types-0.12.2
+- lrucache-1.2.0.0
+- network-uri-2.6.1.0
+- optparse-applicative-0.14.3.0
+- pandoc-2.2.3.2
+- pandoc-citeproc-0.14.8.1
+- random-1.1
+- regex-tdfa-1.2.3.1
+- resourcet-1.2.2
+- scientific-0.3.6.2
+- tagsoup-0.14.7
+- time-locale-compat-0.1.1.5
+- unordered-containers-0.2.9.0
+- vector-0.12.0.1
+- wai-3.2.1.2
+- wai-app-static-3.1.6.2
+- warp-3.2.25
+- yaml-0.10.4.0
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
