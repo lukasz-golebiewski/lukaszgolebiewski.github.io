@@ -10,6 +10,7 @@ jobs:
           name: build
           command: |
             stack update
+            apt-get update
             apt-get install -y git-core
             git submodule init
             git submodule update
