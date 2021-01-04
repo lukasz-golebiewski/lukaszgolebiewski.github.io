@@ -72,7 +72,7 @@ main :: IO ()
 main = runNoOpLoggerT . runNoOpStoreT $ program
 
 ```
-This compiles and runs fine, but we've arrived at the infamouse O(n^2) instances problem! If elsewhere in our codebase we stack our transformers in a different order, e.g. `runNoOpStoreT . runNoOpLoggerT $ program` we will have to add new instances for the transformers' stack in that particular order. Not nice!
+This compiles and runs fine, but we've arrived at the infamous O(n^2) instances problem! If elsewhere in our codebase we stack our transformers in a different order, e.g. `runNoOpStoreT . runNoOpLoggerT $ program` we will have to add new instances for the transformers' stack in that particular order. Not nice!
 ```
     • No instance for (Logger (NoOpLoggerT (NoOpStoreT IO)))
         arising from a use of ‘program’
