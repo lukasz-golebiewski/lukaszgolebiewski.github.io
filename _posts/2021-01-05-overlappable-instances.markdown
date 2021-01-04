@@ -133,7 +133,7 @@ instance Monad m => Logger (NoOpLoggerT m) where
   log _ = pure ()
 
 ```
-Now we can run the effects in any order. Both:
+Now we can run the effects in any[^1] order. Both:
 
 ```haskell
 main :: IO ()
@@ -244,4 +244,4 @@ main = do
 Now it is possible to execute the runners in any given order.
 
 
-* Actually, almost any. There are nuances here which are out of scope of this blog post.
+[^1]: Actually, almost any. There are nuances here which are out of scope of this blog post.
