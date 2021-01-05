@@ -7,8 +7,8 @@ categories: haskell effects
 There are many patterns, styles and libraries which can be chosen for dealing with effects in Haskell. Today I'll try to bring closer one of them.
 
 Let's start off with a very simple program written using tagless final style.
-The program inserts a value "1" into the store under the key 1 and then tries to retrieve it using operations defined in the `Store` type class. It logs what is happening while doing the above thanks to the `Logger`.
-The instances needed for IO are added only to make the whole thing compile, the implementations, as one can clearly see, don't make much sense (for now!)
+The program inserts a value "1" into the store under the key "key1" and then tries to retrieve it using operations defined in the `Store` type class. It logs what is happening while doing the above thanks to the `Logger`.
+The instances needed for `IO` are added only to make the whole thing compile, the implementations aren't very useful (for now!)
 
 
 ```haskell
