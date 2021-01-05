@@ -4,6 +4,7 @@ title:  "Overlappable instances"
 date:   2021-01-05 00:00:12 +0100
 categories: haskell effects
 ---
+There are many patterns, styles and libraries which can be chosen for dealing with effects in Haskell. Today I'll try to bring closer one of them.
 
 Let's start off with a very simple program written using tagless final style.
 The program inserts a value "1" into the store under the key 1 and then tries to retrieve it using operations defined in the `Store` type class. It logs what is happening while doing the above thanks to the `Logger`.
