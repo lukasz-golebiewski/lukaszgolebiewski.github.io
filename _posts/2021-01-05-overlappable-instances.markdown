@@ -257,8 +257,7 @@ main = do
   putStrLn "Done"
 
 ```
-
-Now it is possible to execute the runners in any given order.
-
+Now we can do some more useful things with our program and stack transformers according to our needs.
+Hope you enjoyed the read :-)
 
 [^1]: Actually, almost any. There are nuances here which are out of scope of this blog post.
