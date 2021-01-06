@@ -53,7 +53,7 @@ instance Logger IO where
 main :: IO ()
 main = program
 ```
-This is clearly limiting, because we are allowed to have only one typeclass instance for a given monad. If we would like to have a NoOp instance and a real-world instance, we have to use newtype wrappers. Let's add aliases then for our not-so-useful instances like this:
+This is clearly limiting, because we are allowed to have only one typeclass instance for a given monad transformer. If we would like to have a NoOp instance and a real-world instance, we have to use newtype wrappers. Let's add aliases then for our not-so-useful instances like this:
 
 ```haskell
 newtype NoOpStoreT m a = NoOpStoreT { runNoOpStoreT :: m a }
