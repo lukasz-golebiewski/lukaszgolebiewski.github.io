@@ -99,7 +99,7 @@ instance Monad m => Logger (NoOpStoreT m) where
   log _ = pure ()
 ```
 This gets painful really quickly when we add more classes and transformers.
-Overlappable transformer instances to the rescue! Adding these both for `Store` and `Logger` makes it possible to get rid of boilerplate and allow us to stack our transformers in any* order! Let's start with `Logger`:
+Overlappable transformer instances to the rescue! Adding these both for `Store` and `Logger` makes it possible to get rid of boilerplate and allow us to stack our transformers in any[^1] order! Let's start with `Logger`:
 
 ```haskell
 instance MonadTrans NoOpStoreT where
