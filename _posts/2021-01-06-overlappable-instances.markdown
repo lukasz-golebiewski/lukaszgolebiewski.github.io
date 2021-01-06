@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Overlappable instances"
-date:   2021-01-05 00:00:12 +0100
+date:   2021-01-06 18:20:12 +0100
 categories: haskell effects
 ---
 There are many patterns, styles and libraries which can be chosen for dealing with effects in Haskell. Today I'll try to bring closer one of them.
