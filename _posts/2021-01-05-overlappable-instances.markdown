@@ -59,21 +59,31 @@ This is clearly limiting, because we are allowed to have only one typeclass inst
 newtype NoOpStoreT m a = NoOpStoreT { runNoOpStoreT :: m a }
   deriving newtype (Functor, Applicative, Monad)
 
-newtype NoOpLoggerT m a = NoOpLoggerT { runNoOpLoggerT :: m a }
-  deriving newtype (Functor, Applicative, Monad)
-
-instance Monad m => Store (NoOpLoggerT m) where
+instance Monad m => Store (NoOpStoreT m) where
   put _ _ = pure ()
   get _ = pure Nothing
+
+newtype NoOpLoggerT m a = NoOpLoggerT { runNoOpLoggerT :: m a }
+  deriving newtype (Functor, Applicative, Monad)
 
 instance Monad m => Logger (NoOpLoggerT m) where
   log _ = pure ()
 
 main :: IO ()
 main = runNoOpStoreT . runNoOpLoggerT $ program
-
 ```
-This compiles and runs fine. We need to create an instance of each class for every transformer we intend to use in our stack. Let's see what happens when we reverse the order in which we apply the transformations, that is:
+Compilation fails with the following error:
+```
+    • No instance for (Store (NoOpLoggerT (NoOpStoreT IO)))
+        arising from a use of ‘program’
+```
+Okay then, let's add what the compiler is asking for
+```haskell
+instance Monad m => Store (NoOpLoggerT m) where
+  put _ _ = pure ()
+  get _ = pure Nothing
+```
+This compiles and runs fine. But let's see what happens if we reverse the application of transformers:
 ```haskell
 main :: IO ()
 main = runNoOpLoggerT . runNoOpStoreT $ program
@@ -83,17 +93,12 @@ results in:
     • No instance for (Logger (NoOpStoreT (NoOpLoggerT IO)))
         arising from a use of ‘program’
 ```
-We've arrived at the infamous O(n^2) instances problem! We can add the missing instances like this:
+After adding it in a similar manner we'll arrive at the infamous O(n^2) instances problem!
 ```haskell
-instance Monad m => Store (NoOpStoreT m) where
-  put _ _ = pure ()
-  get _ = pure Nothing
-
 instance Monad m => Logger (NoOpStoreT m) where
   log _ = pure ()
-
 ```
-But this gets painful really quickly when we add more classes and transformers.
+This gets painful really quickly when we add more classes and transformers.
 Overlappable transformer instances to the rescue! Adding these both for `Store` and `Logger` makes it possible to get rid of boilerplate and allow us to stack our transformers in any* order! Let's start with `Logger`:
 
 ```haskell
